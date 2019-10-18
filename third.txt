@@ -1,4 +1,1 @@
-"third file" 
-changes three
-
-git is really useful
+A .txt file named third
