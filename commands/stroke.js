@@ -14,7 +14,7 @@ async function strokeOrder(message) {
     let character = message.content.split(' ')[1]
 
     if (character === undefined) {
-        result = 'Character must not be empty'
+        result = 'Character must not be empty!'
         message.channel.send(result)
         return
     }
@@ -41,7 +41,7 @@ async function strokeOrder(message) {
                 let imageSource = $('h1').next().attr('src')
                 resolve(imageSource)                
             } else {
-                reject('Character doesn\'t exist')
+                resolve('Character doesn\'t exist in strokeorder.info database!')
             }
 
         }
