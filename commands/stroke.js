@@ -7,8 +7,18 @@ let urlencode = require('urlencode')
 
 
 async function strokeOrder(message) {
+    // Initialize
+    let result
+
     // Get character from second array element of splitted string
     let character = message.content.split(' ')[1]
+
+    if (character === undefined) {
+        result = 'Character must not be empty'
+        message.channel.send(result)
+        return
+    }
+
     // Encode character to URL readable
     let encodedCharacter = urlencode(character)
     // Set URL
@@ -31,7 +41,7 @@ async function strokeOrder(message) {
                 let imageSource = $('h1').next().attr('src')
                 resolve(imageSource)                
             } else {
-                resolve('Character doesn\'t exist')
+                reject('Character doesn\'t exist')
             }
 
         }
