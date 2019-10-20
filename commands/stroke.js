@@ -48,7 +48,7 @@ async function strokeOrder(message) {
         request(options, callback)
     })
     // Run request
-    let result = await requestPromise
+    result = await requestPromise
     // Send stroke order .gif
     message.channel.send(result)         
 }
