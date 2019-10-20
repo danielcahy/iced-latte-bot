@@ -41,7 +41,7 @@ async function strokeOrder(message) {
                 let imageSource = $('h1').next().attr('src')
                 resolve(imageSource)                
             } else {
-                resolve('Character doesn\'t exist in strokeorder.info database!')
+                resolve('Character doesn\'t exist inside strokeorder.info database!')
             }
 
         }
