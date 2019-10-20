@@ -5,9 +5,12 @@ const { RichEmbed } = require('discord.js');
 
 
 async function helpMessage(message) {
-   const embed = new RichEmbed()
-    .setTitle('Available commands')
-    .setDescription('.help \n>help message \n.so \n>stroke order')
+    // Rich embed
+    const embed = new RichEmbed()
+        .addField('.help', 'Show help messages', false)
+        .addField('.so', 'Stroke order commands /n Ex: ``.so 你``', false)
+
+   // Send message
     message.channel.send(embed)
 }
 
