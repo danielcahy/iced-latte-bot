@@ -2,12 +2,14 @@
     Import command modules
 */
 let stroke = require('./stroke.js')
+let help = require('./help.js')
 
 /*
     Route commands
 */
 let commands = {
-    '.so': stroke
+    '.so': stroke,
+    '.help': help
 }
 
 let routes = (message) => {

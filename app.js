@@ -1,9 +1,10 @@
 // Read environment variables from .env file
 require('dotenv').config()
+
 // Import the discord.js module
 const Discord = require('discord.js')
 
-//
+// Import the route.js module
 let route = require('./commands/routes.js')
 
 // Create an instance of a Discord client
@@ -20,6 +21,3 @@ client.on('message', message => {
 });
 
 client.login(process.env.DISCORD_TOKEN);
-
-//chang yu
-//Yup yup yep yep
