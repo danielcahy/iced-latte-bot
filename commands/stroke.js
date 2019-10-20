@@ -7,7 +7,7 @@ let urlencode = require('urlencode')
 
 
 async function strokeOrder(message) {
-    // Initialize
+    // Initialize result
     let result
 
     // Get character from second array element of splitted string
@@ -15,8 +15,7 @@ async function strokeOrder(message) {
 
     if (character === undefined) {
         result = 'Character must not be empty!'
-        message.channel.send(result)
-        return
+        return message.channel.send(result)
     }
 
     // Encode character to URL readable
