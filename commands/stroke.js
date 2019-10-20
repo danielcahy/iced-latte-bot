@@ -8,8 +8,13 @@ const { RichEmbed } = require('discord.js');
 
 
 async function strokeOrder(message) {
+<<<<<<< HEAD
     // Initialize embed
     let embed = new RichEmbed()
+=======
+    // Initialize result
+    let result
+>>>>>>> bd1b79787833702553f551eb63ed219195aff06f
 
     // Get character from second array element of splitted string
     let character = message.content.split(' ')[1]
@@ -17,8 +22,12 @@ async function strokeOrder(message) {
     // Return if character or argument is empty
     if (character === undefined) {
         result = 'Character must not be empty!'
+<<<<<<< HEAD
         embed.setDescription(result)
         return message.channel.send(embed)
+=======
+        return message.channel.send(result)
+>>>>>>> bd1b79787833702553f551eb63ed219195aff06f
     }
 
     // Encode character to URL readable
