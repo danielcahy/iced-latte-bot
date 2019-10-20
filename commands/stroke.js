@@ -4,18 +4,21 @@
 let request = require('request')
 let cheerio = require('cheerio')
 let urlencode = require('urlencode')
+const { RichEmbed } = require('discord.js');
 
 
 async function strokeOrder(message) {
-    // Initialize result
-    let result
+    // Initialize embed
+    let embed = new RichEmbed()
 
     // Get character from second array element of splitted string
     let character = message.content.split(' ')[1]
 
+    // Return if character or argument is empty
     if (character === undefined) {
         result = 'Character must not be empty!'
-        return message.channel.send(result)
+        embed.setDescription(result)
+        return message.channel.send(embed)
     }
 
     // Encode character to URL readable
@@ -49,7 +52,8 @@ async function strokeOrder(message) {
     // Run request
     result = await requestPromise
     // Send stroke order .gif
-    message.channel.send(result)         
+    embed.setDescription(result)
+    message.channel.send(embed)         
 }
 
 module.exports = strokeOrder
