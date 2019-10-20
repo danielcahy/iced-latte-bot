@@ -53,8 +53,13 @@ async function strokeOrder(message) {
     })
     // Run request
     result = await requestPromise
+    // Send does not exist message
+    if (!result.endsWith('.gif')) {
+        embed.setDescription(result)
+        message.channel.send(embed)
+    }
     // Send stroke order .gif
-    embed.setDescription(result)
+    embed.setImage(result)
     message.channel.send(embed)         
 }
 
