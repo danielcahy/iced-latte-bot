@@ -13,6 +13,7 @@ const client = new Discord.Client();
 // Client ready
 client.on('ready', () => {
   console.log('I am ready!');
+  client.user.setPresence({ game: { name: 'Type .help' }, status: 'online' })
 });
 
 // Create an event listener for messages
