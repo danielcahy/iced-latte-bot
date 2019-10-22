@@ -1,4 +1,0 @@
-Learn github
-Deploy bot to heroku
-Make bot open source
-Clean code
