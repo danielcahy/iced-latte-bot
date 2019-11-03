@@ -10,10 +10,12 @@
   "author": "Daniel Cahyo <d4niel.cahyo@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "cheerio": "^1.0.0-rc.3",
     "cors": "^2.8.5",
     "discord.js": "^11.5.1",
     "dotenv": "^8.2.0",
+    "express": "^4.17.1",
     "readline-sync": "^1.4.10",
     "request": "^2.88.0",
     "urlencode": "^1.1.0"
