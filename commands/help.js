@@ -3,7 +3,6 @@
 */
 const { RichEmbed } = require('discord.js');
 
-
 async function helpMessage(message) {
     // Rich embed
     const embed = new RichEmbed()
