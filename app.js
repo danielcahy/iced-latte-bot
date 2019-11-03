@@ -28,7 +28,7 @@ const data = fs.readFileSync('graphics.txt');
 let whitelist = ['http://127.0.0.1:5500']
 let corsOptions = {
   origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1 || !origin) {
+    if (whitelist.indexOf(origin) !== -1) {
       callback(null, true)
     } else {
       callback('You don\'t have a permission to acces this API')
