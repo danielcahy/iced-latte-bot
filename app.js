@@ -25,7 +25,7 @@ const app = express()
 const port = process.env.PORT || 3000;
 const data = fs.readFileSync('graphics.txt');
 
-let whitelist = ['http://127.0.0.1:5500']
+let whitelist = ['http://danielcahy.com']
 let corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
