@@ -35,8 +35,6 @@ let corsOptions = {
     }
   }
 }
-
-app.use(cors(corsOptions))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -47,7 +45,7 @@ let hanziStringsArray = hanziString.split('\n')
 hanziStringsArray.pop()
 let hanziObjectsArray = hanziStringsArray.map(JSON.parse)
 
-app.get("/hanzi/:c", function (req, res) {
+app.get("/hanzi/:c", cors(corsOptions), function (req, res) {
   let characters = req.params.c.split('')
   chracters = characters.slice(0, 10)
   let charactersArray = []
