@@ -47,7 +47,7 @@ let hanziObjectsArray = hanziStringsArray.map(JSON.parse)
 
 app.get("/hanzi/:c", cors(corsOptions), function (req, res) {
   let characters = req.params.c.split('')
-  chracters = characters.slice(0, 10)
+  chracters = characters.slice(0, 25)
   let charactersArray = []
 
   for (let i of characters) {
