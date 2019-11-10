@@ -15,10 +15,8 @@ let dict = (message) => {
         
         collector.on('end', collected => {
             msg.channel.send(`Collected ${collected.size} items`);
+            msg.delete()
         });         
-    })
-    .then(msg => {
-        msg.delete()
     })
     .catch(err => console.err)
    
