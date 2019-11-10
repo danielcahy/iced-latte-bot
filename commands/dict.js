@@ -2,9 +2,7 @@ let dict = (message) => {
     // message.channel.send('Dict called')    
 
 
-    const filter = (m) => {
-        m.content.includes('huehue')
-    }        
+    const filter = m => m.author === message.author
     const collector = message.channel.createMessageCollector(filter, { time: 15000 });
     
     message.channel.send('Type something..')
