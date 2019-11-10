@@ -7,12 +7,12 @@ let dict = (message) => {
     
     message.channel.send('Type something..')
     collector.on('collect', m => {
-        console.log(`Collected ${m.content}`);
+        message.channel.send(`Collected ${m.content}`);
         collector.stop()
     });
     
     collector.on('end', collected => {
-        console.log(`Collected ${collected.size} items`);
+        message.channel.send(`Collected ${collected.size} items`);
     });    
 }
 
