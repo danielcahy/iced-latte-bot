@@ -3,7 +3,7 @@ let dict = (message) => {
 
     message.channel.send('Type something..')
     .then(msg => {
-        const filter = m => m.author === msg.author
+        const filter = m => m.author === message.author
         const collector = msg.channel.createMessageCollector(filter, { time: 15000 });
         
         msg.channel.send('Message author: ' + msg.author)
