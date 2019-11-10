@@ -3,7 +3,7 @@ let dict = (message) => {
 
 
     const filter = (m) => {
-        m.author === message.author
+        m.includes(huehue)
     }        
     const collector = message.channel.createMessageCollector(filter, { time: 15000 });
     
