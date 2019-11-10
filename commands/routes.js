@@ -3,13 +3,15 @@
 */
 let stroke = require('./stroke.js')
 let help = require('./help.js')
+let dict = require('./dict.js')
 
 /*
     Route commands
 */
 let commands = {
+    '.help': help,
     '.so': stroke,
-    '.help': help
+    '.dict': dict
 }
 
 let routes = (message) => {

@@ -7,7 +7,7 @@ let urlencode = require('urlencode')
 const { RichEmbed } = require('discord.js');
 
 
-async function strokeOrder(message) {
+async function stroke(message) {
     // Initialize embed
     let embed = new RichEmbed()
     // Initialize result
@@ -63,4 +63,4 @@ async function strokeOrder(message) {
     message.channel.send(embed)         
 }
 
-module.exports = strokeOrder
+module.exports = stroke

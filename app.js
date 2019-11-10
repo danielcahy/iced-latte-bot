@@ -15,7 +15,6 @@ client.on('message', message => {
 });
 client.login(process.env.DISCORD_TOKEN);
 
-
 /* Express API */
 const fs = require('fs')
 const cors = require('cors')
@@ -39,6 +38,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.listen(port, () => console.log(`Express ready on port: ${port}!`))
+
 // Hanzi API
 let hanziString = data.toString()
 let hanziStringsArray = hanziString.split('\n')
