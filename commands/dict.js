@@ -18,7 +18,7 @@ async function dict(message) {
     }
     let argument = message.content.split(' ')[1] 
 
-    embed.setTitle(`Search result for ``${argument}```)
+    embed.setTitle(`Search result for: ${argument}`)
 
     let searchQuery = urlencode(argument)
     let requestURL = `https://ac.dict.naver.com/linedictweb/ac?q=${searchQuery}&st=${queryStringParameters.st}&r_lt=${queryStringParameters.r_lt}&q_enc=UTF-8&r_format=json&r_enc=UTF-8`
@@ -98,7 +98,7 @@ async function dict(message) {
         embed.setDescription(resultArray)
       }
 
-      message.send(embed)
+      message.channel.send(embed)
 
 
 
