@@ -1,7 +1,6 @@
 const request = require('request')
 const htmlToText = require('html-to-text')
 const urlencode = require('urlencode')
-const readlineSync = require('readline-sync')
 const { RichEmbed } = require('discord.js')
 
 async function dict(message) {
@@ -104,7 +103,6 @@ async function dict(message) {
 
                         let meanings = resultObject.meanList
                         
-                        console.log(meanings)
                         if (meanings.length > 5) {
                             //Limit displays to 5
                             for (let i = 0; i < 5; i++) {
@@ -123,7 +121,6 @@ async function dict(message) {
                                     definition: meaning.mean
                                 }
                                 sanitizeItem(item)
-                                console.log(item)
                                 embed.addField(item.part, item.definition)
                             }
                         }
