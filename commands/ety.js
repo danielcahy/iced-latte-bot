@@ -20,7 +20,7 @@ async function ety(message) {
                     reject(error)
                 }
 
-                if (response.status === 200) {
+                if (response.statusCode === 200) {
                   
                   resolve(requestURL)
                 } else {
@@ -29,7 +29,7 @@ async function ety(message) {
               }) 
         })
     } catch(error) {
-        result = error
+        result = error.message
     }
 
     //Check if URL or String
