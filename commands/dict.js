@@ -15,7 +15,7 @@ let dict = (message) => {
     // Get character(s) from second array element of splitted string
     let query = message.content.split(' ')[1]    
 
-    message.send(query)
+    message.channel.send(query)
 
 
 
