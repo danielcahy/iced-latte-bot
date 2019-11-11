@@ -111,7 +111,8 @@ async function dict(message) {
                                 definition: meaning.mean
                             }        
                             embed.addField(item.part, item.definition)
-                        }   
+                        }
+                        message.channel.send(embed)   
                     })()
                 }
                 collector.stop()
