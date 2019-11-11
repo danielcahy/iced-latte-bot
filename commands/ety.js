@@ -10,7 +10,7 @@ async function ety(message) {
 
     let argument = message.content.split(' ')[1][0]
 
-    let requestQuery = urlencode(argument)
+    let requestQuery = urlencode(argument).replace(/%/g, '')
     let requestURL = `http://www.chaziwang.com/pic/ziyuanimg/${requestQuery}.png`
     console.log(requestURL)
     try {
