@@ -15,7 +15,7 @@ async function ety(message) {
     try {
         result = await new Promise((resolve, reject) => {
             request(requestURL, function (error, response, body) {
-                console.log(response)
+                console.log(response.statusCode)
                 if (error) {
                     reject(error)
                 }
