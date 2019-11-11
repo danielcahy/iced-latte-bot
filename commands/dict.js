@@ -82,19 +82,14 @@ async function dict(message) {
             const filter = m => m.author === message.author
             const collector = message1.channel.createMessageCollector(filter, { time: 15000 });
             
-            collector.on('collect', m => {
+            collector.on('collect', async m => {
                 if (Number(m) >= 1 && Number(m) <= resultLength) {
                     let embed = new RichEmbed()
                     let itemHash = resultArray[m-1][1]
                     let itemHanzi = resultArray[m-1][2]
                     let itemPinyin = resultArray[m-1][4]
 
-                    (async function sendWordsPage() {
-                        await sendDefinitions()
-                        await sendExamples()
-                    })()
-
-                    async function sendDefinitions() {
+                    (async function sendDefinitions() {
                         embed.setTitle(`${itemHanzi} - ${itemPinyin}`)
     
                         let requestURL = `https://dict.naver.com/linedict/267/cnen/entry/json/${itemHash}?defaultPron=US&hash=true&platform=isPC&dictType=cnen`
@@ -126,8 +121,8 @@ async function dict(message) {
                                 embed.addField(item.part, item.definition)
                             }
                         }
-                    }
-                    async function sendExamples() {
+                    })()
+                    (async function sendExamples() {
                         let requestWords = urlencode(itemHanzi)
                         let requestURL = `https://dict.naver.com/linedict/267/cnen/entryExample/exampleJson?query=${requestWords}&dicType=cnen&platform=isPC`
                         
@@ -162,16 +157,16 @@ async function dict(message) {
                                 embed.addField(`${item.zhSentence} - ${item.pySentence}`, `${item.enSentence}`)
                             }
                         }
-                    }
+                    })()
                     //
                     message.channel.send(embed)
                 }
                 collector.stop()
-            });
+            })
             
             collector.on('end', collected => {
                 //
-            });         
+            })         
         })
         .catch(error => console.error)        
       } else {
