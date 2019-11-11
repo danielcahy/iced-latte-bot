@@ -102,7 +102,14 @@ async function dict(message) {
                             })        
                         })
 
-                        let meanings = resultObject.meanList
+                        try {
+                            let meanings = resultObject.meanList
+                        } catch (error) {
+                            console.log(error)
+                            meanings = result.ob
+                        }
+
+                        
                         console.log(meanings)
                         if (meanings.length > 5) {
                             //Limit displays to 5
@@ -122,6 +129,7 @@ async function dict(message) {
                                     definition: meaning.mean
                                 }
                                 sanitizeItem(item)
+                                console.log(item)
                                 embed.addField(item.part, item.definition)
                             }
                         }
