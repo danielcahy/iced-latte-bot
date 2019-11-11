@@ -84,13 +84,17 @@ async function dict(message) {
             
             collector.on('collect', m => {
                 if (Number(m) >= 1 && Number(m) <= resultLength) {
-                    //Handle
-                    (async function sendDefinition() {
-                        let embed = new RichEmbed()
-                        let itemHash = resultArray[m-1][1]
-                        let itemHanzi = resultArray[m-1][2]
-                        let itemPinyin = resultArray[m-1][4]
-    
+                    let embed = new RichEmbed()
+                    let itemHash = resultArray[m-1][1]
+                    let itemHanzi = resultArray[m-1][2]
+                    let itemPinyin = resultArray[m-1][4]
+
+                    (async function sendWordsPage() {
+                        await sendDefinitions()
+                        await sendExamples
+                    })()
+
+                    async function sendDefinitions() {
                         embed.setTitle(`${itemHanzi} - ${itemPinyin}`)
     
                         let requestURL = `https://dict.naver.com/linedict/267/cnen/entry/json/${itemHash}?defaultPron=US&hash=true&platform=isPC&dictType=cnen`
@@ -101,10 +105,8 @@ async function dict(message) {
                                 resolve(result)
                             })        
                         })
-    
-                        //
-                        let meanings = resultObject.meanList
 
+                        let meanings = resultObject.meanList
                         if (meanings.length > 5) {
                             //Limit displays to 5
                             for (let i = 0; i < 5; i++) {
@@ -124,10 +126,45 @@ async function dict(message) {
                                 embed.addField(item.part, item.definition)
                             }
                         }
+                    }
+                    async function sendExamples() {
+                        let requestWords = urlencode(itemHanzi)
+                        let requestURL = `https://dict.naver.com/linedict/267/cnen/entryExample/exampleJson?query=${requestWords}&dicType=cnen&platform=isPC`
+                        
+                        
+                        let resultObject = await new Promise((resolve, reject) => {
+                            request(requestURL, function (error, response, body) {
+                                let result = JSON.parse(body)
+                                resolve(result)
+                            })        
+                        })                        
+                        
+                        let examples = resultObject.searchExampleList
 
-
-                        message.channel.send(embed)   
-                    })()
+                        if (examples.length > 5) {
+                            //Limits to 5
+                            for (let i = 0; i < 5; i++) {
+                                let item = {
+                                    zhSentence: examples[i].example,
+                                    pySentence: examples[i].pinyin,
+                                    enSentence: htmlToText(examples[i].translation)
+                                }
+                                embed.addField(`${item.zhSentence} - ${item.pySentence}`, `${item.enSentence}`)
+                            }
+                        } else {
+                            //Displays
+                            for (let example of examples) {
+                                let item = {
+                                    zhSentence: example.example,
+                                    pySentence: example.pinyin,
+                                    enSentence: htmlToText(example.translation)
+                                }
+                                embed.addField(`${item.zhSentence} - ${item.pySentence}`, `${item.enSentence}`)
+                            }
+                        }
+                    }
+                    //
+                    message.channel.send(embed)
                 }
                 collector.stop()
             });
@@ -137,40 +174,10 @@ async function dict(message) {
             });         
         })
         .catch(error => console.error)        
-
-        //Selects
-        // let selectedNumber = readlineSync.question(`Enter number: (1-${resultLength})`)
-        // console.log(resultArray[selectedNumber-1])
-    
-        // //Gets data
-        // let itemHash = resultArray[selectedNumber-1][1]
-        // let requestURL = `https://dict.naver.com/linedict/267/cnen/entry/json/${itemHash}?defaultPron=US&hash=true&platform=isPC&dictType=cnen`
-        // let resultObject = await new Promise((resolve, reject) => {
-        //   request(requestURL, function (error, response, body) {
-        //     let pOS = JSON.parse(body).meanList
-        //     for (let item of pOS) {
-        //       console.log(`${item.part} - ${item.mean}`)
-        //     }
-        //   })        
-        // })
       } else {
         embed.setDescription(resultArray)
         message.channel.send(embed)
       }
-
-      
-
-
-
-
-
-
-
-
-
-    // message.channel.send('Type something..') //Searching result..
-
-   
 }
 
 module.exports = dict
