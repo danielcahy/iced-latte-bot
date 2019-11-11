@@ -103,6 +103,7 @@ async function dict(message) {
                         })
 
                         let meanings = resultObject.meanList
+                        console.log(meanings)
                         if (meanings.length > 5) {
                             //Limit displays to 5
                             for (let i = 0; i < 5; i++) {
