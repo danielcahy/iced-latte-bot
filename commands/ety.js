@@ -28,7 +28,7 @@ async function ety(message) {
         result = error
     }
 
-    Check if URL or String
+    //Check if URL or String
     console.log(result)
     if (result.includes('http')) {
         embed.setImage(result)
