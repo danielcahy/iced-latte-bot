@@ -18,7 +18,7 @@ async function dict(message) {
     }
     let argument = message.content.split(' ')[1] 
 
-    embed.setTitle(`Search result for: ${argument}`)
+    embed.setTitle(`Search result for ${argument}`)
 
     let searchQuery = urlencode(argument)
     let requestURL = `https://ac.dict.naver.com/linedictweb/ac?q=${searchQuery}&st=${queryStringParameters.st}&r_lt=${queryStringParameters.r_lt}&q_enc=UTF-8&r_format=json&r_enc=UTF-8`
@@ -60,9 +60,8 @@ async function dict(message) {
               pinyin: resultArray[i][4],
               meaning: resultArray[i][3]
             }
+            embed.setDescription('Select result for detail | Ex: ``1``')
             embed.addField(`${sum}. ${item.hanzi} - ${item.pinyin}`, `${item.meaning}`)
-            // console.log(sum)
-            // console.log(`${item.hanzi} - ${item.pinyin} - ${item.meaning}`)
           }
           resultLength = maxResult
         } else {
@@ -74,11 +73,55 @@ async function dict(message) {
               meaning: array[3]
             }
             embed.addField(`${sum}. ${item.hanzi} - ${item.pinyin}`, `${item.meaning}`)
-            // console.log(sum)
-            // console.log(`${item.hanzi} - ${item.pinyin} - ${item.meaning}`)
           }
           resultLength = resultArray.length
         }
+
+        message.channel.send(embed)
+        .then(message1 => {
+            const filter = m => m.author === message.author
+            const collector = message1.channel.createMessageCollector(filter, { time: 15000 });
+            
+            collector.on('collect', m => {
+                if (Number(m) >= 1 && Number(m) <= resultLength) {
+                    //Handle
+                    let embed = new RichEmbed()
+                    let itemHash = resultArray[m-1][1]
+                    let itemHanzi = resultArray[m-1][2]
+                    let itemPinyin = resultArray[m-1][4]
+
+                    embed.setTitle(`${itemHanzi} - ${itemPinyin}`)
+
+                    let requestURL = `https://dict.naver.com/linedict/267/cnen/entry/json/${itemHash}?defaultPron=US&hash=true&platform=isPC&dictType=cnen`
+
+                    let resultObject = await new Promise((resolve, reject) => {
+                        request(requestURL, function (error, response, body) {
+                            let result = JSON.parse(body)
+                            resolve(result)
+                        })        
+                    })
+
+                    //
+                    let meanings = resultObject.meanList
+                    //
+                    for (let meaning of meanings) {
+                        let item = {
+                            part: meaning.part,
+                            definition: meaning.mean
+                        }        
+                        embed.addField(item.part, item.definition)
+                    }                    
+                }
+                collector.stop()
+            });
+            
+            collector.on('end', collected => {
+                //Delete 'Searching result' message
+                message1.delete()
+            });         
+        })
+        .catch(error => console.error)        
+
         //Selects
         // let selectedNumber = readlineSync.question(`Enter number: (1-${resultLength})`)
         // console.log(resultArray[selectedNumber-1])
@@ -96,9 +139,10 @@ async function dict(message) {
         // })
       } else {
         embed.setDescription(resultArray)
+        message.channel.send(embed)
       }
 
-      message.channel.send(embed)
+      
 
 
 
@@ -109,21 +153,7 @@ async function dict(message) {
 
 
     // message.channel.send('Type something..') //Searching result..
-    // .then(msg => {
-    //     const filter = m => m.author === message.author
-    //     const collector = msg.channel.createMessageCollector(filter, { time: 15000 });
-        
-    //     collector.on('collect', m => {
-    //         //Stop collecting
-    //         collector.stop()
-    //     });
-        
-    //     collector.on('end', collected => {
-    //         //Delete 'Searching result' message
-    //         msg.delete()
-    //     });         
-    // })
-    // .catch(err => console.err)
+
    
 }
 
