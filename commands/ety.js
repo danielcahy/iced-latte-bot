@@ -33,7 +33,7 @@ async function ety(message) {
     if (result.includes('http')) {
         embed.setImage(result)
     } else {
-        embed.setDescription(result)
+        embed.setDescription(result.name)
     }
     message.channel.send(embed)
 }
