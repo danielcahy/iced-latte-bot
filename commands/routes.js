@@ -4,6 +4,7 @@
 let stroke = require('./stroke.js')
 let help = require('./help.js')
 let dict = require('./dict.js')
+let ety = require('./ety.js')
 
 /*
     Route commands
@@ -11,7 +12,8 @@ let dict = require('./dict.js')
 let commands = {
     '.help': help,
     '.so': stroke,
-    '.dict': dict
+    '.dict': dict,
+    '.ety': ety
 }
 
 let routes = (message) => {
