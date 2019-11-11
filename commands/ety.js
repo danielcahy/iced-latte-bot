@@ -12,16 +12,16 @@ async function ety(message) {
 
     let requestQuery = urlencode(argument).replace(/%/g, '')
     let requestURL = `http://www.chaziwang.com/pic/ziyuanimg/${requestQuery}.png`
-    console.log(requestURL)
     try {
         result = await new Promise((resolve, reject) => {
             request(requestURL, function (error, response, body) {
+                console.log(response)
                 if (error) {
                     reject(error)
                 }
 
                 if (response.status === 200) {
-                  console.log(response)
+                  
                   resolve(requestURL)
                 } else {
                   reject(new Error('Character does not exist inside ``chaziwang.com`` database!'))
