@@ -16,6 +16,10 @@ async function ety(message) {
     try {
         result = await new Promise((resolve, reject) => {
             request(requestURL, function (error, response, body) {
+                if (error) {
+                    reject(error)
+                }
+
                 if (response.status === 200) {
                   console.log(response)
                   resolve(requestURL)
