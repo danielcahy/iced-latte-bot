@@ -15,13 +15,11 @@ async function ety(message) {
     try {
         result = await new Promise((resolve, reject) => {
             request(requestURL, function (error, response, body) {
-                console.log(response.statusCode)
                 if (error) {
                     reject(error)
                 }
 
                 if (response.statusCode === 200) {
-                  
                   resolve(requestURL)
                 } else {
                   reject(new Error('Character does not exist inside ``chaziwang.com`` database!'))
@@ -33,11 +31,10 @@ async function ety(message) {
     }
 
     //Check if URL or String
-    console.log(result)
     if (result.includes('http')) {
         embed.setImage(result)
     } else {
-        embed.setDescription(result.name)
+        embed.setDescription(result)
     }
     message.channel.send(embed)
 }
