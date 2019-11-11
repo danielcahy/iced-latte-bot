@@ -12,7 +12,7 @@ async function ety(message) {
 
     let requestQuery = urlencode(argument)
     let requestURL = `http://www.chaziwang.com/pic/ziyuanimg/${requestQuery}.png`
-    
+    console.log(requestURL)
     try {
         result = await new Promise((resolve, reject) => {
             request(requestURL, function (error, response, body) {
