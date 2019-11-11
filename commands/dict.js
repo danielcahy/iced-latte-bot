@@ -102,13 +102,7 @@ async function dict(message) {
                             })        
                         })
 
-                        try {
-                            let meanings = resultObject.meanList
-                        } catch (error) {
-                            console.log(error)
-                            meanings = result.ob
-                        }
-
+                        let meanings = resultObject.meanList
                         
                         console.log(meanings)
                         if (meanings.length > 5) {
