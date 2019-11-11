@@ -91,7 +91,7 @@ async function dict(message) {
 
                     (async function sendWordsPage() {
                         await sendDefinitions()
-                        await sendExamples
+                        await sendExamples()
                     })()
 
                     async function sendDefinitions() {
