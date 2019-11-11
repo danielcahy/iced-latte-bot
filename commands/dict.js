@@ -142,7 +142,7 @@ async function dict(message) {
                             for (let i = 0; i < 5; i++) {
                                 let item = {
                                     zhSentence: examples[i].example,
-                                    pySentence: examples[i].pinyin,
+                                    pySentence: htmlToText.fromString(examples[i].pinyin),
                                     enSentence: htmlToText.fromString(examples[i].translation)
                                 }
                                 embed.addField(`${item.zhSentence} - ${item.pySentence}`, `${item.enSentence}`)
@@ -152,7 +152,7 @@ async function dict(message) {
                             for (let example of examples) {
                                 let item = {
                                     zhSentence: example.example,
-                                    pySentence: example.pinyin,
+                                    pySentence: htmlToText.fromString(example.pinyin),
                                     enSentence: htmlToText.fromString(example.translation)
                                 }
                                 embed.addField(`${item.zhSentence} - ${item.pySentence}`, `${item.enSentence}`)
