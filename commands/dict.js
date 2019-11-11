@@ -119,8 +119,7 @@ async function dict(message) {
             });
             
             collector.on('end', collected => {
-                //Delete 'Searching result' message
-                message1.delete()
+                //
             });         
         })
         .catch(error => console.error)        
