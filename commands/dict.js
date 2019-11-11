@@ -104,14 +104,28 @@ async function dict(message) {
     
                         //
                         let meanings = resultObject.meanList
-                        //
-                        for (let meaning of meanings) {
-                            let item = {
-                                part: meaning.part,
-                                definition: meaning.mean
-                            }        
-                            embed.addField(item.part, item.definition)
+
+                        if (meanings.length > 5) {
+                            //Limit displays to 5
+                            for (let i = 0; i < 5; i++) {
+                                let item = {
+                                    part: meanings[i].part,
+                                    definition: meanings[i].mean
+                                }
+                                embed.addField(item.part, item.definition)                                       
+                            }
+                        } else {
+                            //Display for anything under 5
+                            for (let meaning of meanings) {
+                                let item = {
+                                    part: meaning.part,
+                                    definition: meaning.mean
+                                }        
+                                embed.addField(item.part, item.definition)
+                            }
                         }
+
+
                         message.channel.send(embed)   
                     })()
                 }
