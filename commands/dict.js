@@ -2,9 +2,7 @@ const request = require('request')
 const htmlToText = require('html-to-text')
 const urlencode = require('urlencode')
 const readlineSync = require('readline-sync')
-const { RichEmbed } = require('discord.js');
-
-
+const { RichEmbed } = require('discord.js')
 
 async function dict(message) {
     // Initialize embed
@@ -61,6 +59,7 @@ async function dict(message) {
               pinyin: resultArray[i][4],
               meaning: resultArray[i][3]
             }
+            sanitizeItem(item)
             embed.addField(`${sum}. ${item.hanzi} - ${item.pinyin}`, `${item.meaning}`)
           }
           resultLength = maxResult
@@ -72,6 +71,7 @@ async function dict(message) {
               pinyin: array[4],
               meaning: array[3]
             }
+            sanitizeItem(item)
             embed.addField(`${sum}. ${item.hanzi} - ${item.pinyin}`, `${item.meaning}`)
           }
           resultLength = resultArray.length
@@ -110,6 +110,7 @@ async function dict(message) {
                                     part: meanings[i].part,
                                     definition: meanings[i].mean
                                 }
+                                sanitizeItem(item)
                                 embed.addField(item.part, item.definition)                                       
                             }
                         } else {
@@ -118,7 +119,8 @@ async function dict(message) {
                                 let item = {
                                     part: meaning.part,
                                     definition: meaning.mean
-                                }        
+                                }
+                                sanitizeItem(item)
                                 embed.addField(item.part, item.definition)
                             }
                         }
@@ -147,6 +149,7 @@ async function dict(message) {
                                     pySentence: htmlToText.fromString(examples[i].pinyin),
                                     enSentence: htmlToText.fromString(examples[i].translation)
                                 }
+                                sanitizeItem(item)
                                 embed.addField(`${item.zhSentence} - ${item.pySentence}`, `${item.enSentence}`)
                             }
                         } else {
@@ -157,6 +160,7 @@ async function dict(message) {
                                     pySentence: htmlToText.fromString(example.pinyin),
                                     enSentence: htmlToText.fromString(example.translation)
                                 }
+                                sanitizeItem(item)
                                 embed.addField(`${item.zhSentence} - ${item.pySentence}`, `${item.enSentence}`)
                             }
                         }
@@ -176,6 +180,14 @@ async function dict(message) {
         embed.setDescription(resultArray)
         message.channel.send(embed)
       }
+}
+
+let sanitizeItem = (object) => {
+    for (let property in object) {
+        if (object[property] === undefined) {
+            object[property] = '-'
+        }
+    }
 }
 
 module.exports = dict
