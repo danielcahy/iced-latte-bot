@@ -187,7 +187,7 @@ async function dict(message) {
 
 let sanitizeItem = (object) => {
     for (let property in object) {
-        if (object[property] === undefined) {
+        if (object[property] === '') {
             object[property] = '-'
         }
     }
