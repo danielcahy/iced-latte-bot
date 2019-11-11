@@ -91,7 +91,7 @@ async function dict(message) {
 
                     await (async function sendDefinitions() {
                         embed.setTitle(`${itemHanzi} - ${itemPinyin}`)
-                        embed.addField('DEFINITION(S)', '')
+                        embed.addField('DEFINITION(S)', '- -- --- ----- --------')
     
                         let requestURL = `https://dict.naver.com/linedict/267/cnen/entry/json/${itemHash}?defaultPron=US&hash=true&platform=isPC&dictType=cnen`
     
@@ -125,7 +125,7 @@ async function dict(message) {
                     })()
                     
                     await (async function sendExamples() {
-                        embed.addField('EXAMPLE(S)', '')
+                        embed.addField('EXAMPLE(S)', '- -- --- ----- --------')
                         let requestWords = urlencode(itemHanzi)
                         let requestURL = `https://dict.naver.com/linedict/267/cnen/entryExample/exampleJson?query=${requestWords}&dicType=cnen&platform=isPC`
                         
