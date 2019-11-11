@@ -47,11 +47,12 @@ async function dict(message) {
     }
 
     if (typeof resultArray === 'object') {
+        //Set description
+        embed.setDescription('Select result for detail | Ex: ``1``')
         //Displays limited search result
         let resultLength = 0
         let maxResult = 10
         let sum = 0
-
         if (resultArray.length > maxResult) {
           for (let i = 0; i < maxResult; i++) {
             sum += 1
@@ -60,7 +61,6 @@ async function dict(message) {
               pinyin: resultArray[i][4],
               meaning: resultArray[i][3]
             }
-            embed.setDescription('Select result for detail | Ex: ``1``')
             embed.addField(`${sum}. ${item.hanzi} - ${item.pinyin}`, `${item.meaning}`)
           }
           resultLength = maxResult
