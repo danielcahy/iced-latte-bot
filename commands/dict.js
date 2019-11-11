@@ -1,24 +1,50 @@
-let dict = (message) => {
-    // message.channel.send('Dict called')    
+const request = require('request')
+const htmlToText = require('html-to-text')
+const urlencode = require('urlencode')
+const readlineSync = require('readline-sync')
+const { RichEmbed } = require('discord.js');
 
-    message.channel.send('Type something..')
-    .then(msg => {
-        const filter = m => m.author === message.author
-        const collector = msg.channel.createMessageCollector(filter, { time: 15000 });
+
+
+let dict = (message) => {
+    // Initialize embed
+    let embed = new RichEmbed()
+    // Initialize result
+    let result
+
+    // Get character(s) from second array element of splitted string
+    let query = message.content.split(' ')[1]    
+
+    message.send(query)
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // message.channel.send('Type something..') //Searching result..
+    // .then(msg => {
+    //     const filter = m => m.author === message.author
+    //     const collector = msg.channel.createMessageCollector(filter, { time: 15000 });
         
-        msg.channel.send('Message author: ' + msg.author)
-        collector.on('collect', m => {
-            msg.channel.send('m author: ' + m.author)
-            msg.channel.send(`Collected ${m.content}`);
-            collector.stop()
-        });
+    //     collector.on('collect', m => {
+    //         //Stop collecting
+    //         collector.stop()
+    //     });
         
-        collector.on('end', collected => {
-            msg.channel.send(`Collected ${collected.size} items`);
-            msg.delete()
-        });         
-    })
-    .catch(err => console.err)
+    //     collector.on('end', collected => {
+    //         //Delete 'Searching result' message
+    //         msg.delete()
+    //     });         
+    // })
+    // .catch(err => console.err)
    
 }
 
