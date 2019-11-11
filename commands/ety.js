@@ -28,14 +28,14 @@ async function ety(message) {
         result = error
     }
 
-    //Check if URL or String
-    // console.log(result)
-    // if (result.includes('http')) {
-    //     embed.setImage(result)
-    // } else {
-    //     embed.setDescription(result.name)
-    // }
-    // message.channel.send(embed)
+    Check if URL or String
+    console.log(result)
+    if (result.includes('http')) {
+        embed.setImage(result)
+    } else {
+        embed.setDescription(result.name)
+    }
+    message.channel.send(embed)
 }
 
 module.exports = ety
