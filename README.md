@@ -5,7 +5,7 @@
 | Dictionary | Stroke Order | Etymology |
 | --- | -- | ---|
 | `.dict ni3hao3` | `.so 你` | `.ety 你` |
-| `.dict 你好`  | `.so 好` | `.so 好` |
+| `.dict 你好`  | `.so 好` | `.ety 好` |
 ## To Do
 - [ ] Restrucure the code
 - [ ] Korean-English dictionary
