@@ -1,6 +1,6 @@
 ## Invite Link
 [Link](https://discordapp.com/api/oauth2/authorize?client_id=633669735187218472&permissions=0&scope=bot)
-## Utilities
+## Tools
 ### Mandarin
 | Dictionary | Stroke Order | Etymology |
 | --- | -- | ---|
